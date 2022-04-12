@@ -9,15 +9,19 @@ let todoCompleted = document.querySelector('.todo-completed');
 //Подгрузка из localStorage при загрузке страницы
 let toDoData = JSON.parse(localStorage.getItem('name'));
 
+if (toDoData == null){
+  toDoData = [];
+}
+
 //Вывод на страницу данных
 let render = function () {
   todoList.innerHTML = '';
   todoCompleted.innerHTML = '';
 
   //Проверка отсутствия объекта в localstorage
-  if (toDoData.length == 0) {
+  if (toDoData == "") {
 
-  } else {
+  } else{
     toDoData.forEach(function (item) {
     let li = document.createElement('li');
     li.classList.add('todo-item');
@@ -66,6 +70,7 @@ todoControl.addEventListener('submit', function (event) {
     headerInput.value = "";
   }
 
+  
   localStorage.name = JSON.stringify(toDoData);
   render();
 });
